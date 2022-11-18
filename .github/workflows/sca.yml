@@ -58,7 +58,7 @@ jobs:
           name: filtered-results
           path: filtered_results.json
           
-    veracode-sca-task:
+  veracode-sca-task:
       runs-on: ubuntu-latest
       name: Scan Repository for Issues
       
