@@ -1,4 +1,4 @@
-name: Main Branch Workflow
+name: Pipeline Scan Workflow
 
 on:
   push:
