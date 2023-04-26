@@ -1,4 +1,4 @@
-name: SCA Workflow - Demo
+name: SCA Workflow - Certification Demo
 
 on:
   push:
