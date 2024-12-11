@@ -46,9 +46,10 @@ public class RemoveAccountCommand implements BlabberCommand {
 			logger.info(sqlQuery);
 			sqlStatement.execute(sqlQuery);
 			
-			sqlQuery = "DELETE FROM users WHERE username = '" + blabberUsername + "'";
-			logger.info(sqlQuery);
-			sqlStatement.execute(sqlQuery);
+			sqlQuery = "DELETE FROM users WHERE username =?";
+			sqlStatement2 = sqlStatement.prepareStatement(sqlQuery);
+			sqlStatement2.setString(1, blabberUsername);
+			sqlStatement2.execute();
 			/* END BAD CODE */
 			
 		} catch (SQLException e) {
