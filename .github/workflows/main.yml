@@ -5,6 +5,21 @@ on:
       branches: [ "main" ]
 
 jobs:
+  Package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Empacotamento dos arquivos
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: 'veracode.zip'
+          path: .
+      - name: Publicando Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacoteVeracode
+          path: veracode.zip
+
   build:
     runs-on: ubuntu-latest
     steps:
