@@ -25,24 +25,25 @@ jobs:
         name: verademo.war
         path: target/verademo.war
         
-  policy-scan:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - name: get archive
-        uses: actions/download-artifact@v4
-        with:
-          name: verademo.war
-          path: .
-      - name: Veracode Upload and Scan Action Step
-        uses: veracode/veracode-uploadandscan-action@master
-        id: upload_and_scan
-        with:
-          appname: 'VeraDemo-Pipeline-Scan-New'
-          createprofile: true
-          criticality: 'VeryHigh'
-          filepath: 'verademo.war'
-          vid: '${{ secrets.VERACODE_API_ID }}'
-          vkey: '${{ secrets.VERACODE_API_KEY }}'
-          version: ${{ github.run_id }}
+  Veracode_UploadAndScan:
+      runs-on: ubuntu-latest
+      needs: Package
+      steps:
+        - name: Download Artefato
+          uses: actions/download-artifact@v4
+          with:
+            name: pacoteVeracode
+        - name: UploadAndScan
+          uses: veracode/veracode-uploadandscan-action@master # Faz a analise da Veracode
+          env:
+            VeracodeID: ${{ secrets.VeracodeID }} # Lembrar de criar as credenciais no Secrets
+            VeracodeKey: ${{ secrets.VeracodeKey }}
+            AppName: Github Actions - ${{ github.repository }}
+          with:
+            vid: '$VeracodeID'
+            vkey: '$VeracodeKey'
+            criticality: 'VeryHigh'
+            appname: '$AppName'
+            createsandbox: true
+            filepath: 'veracode.zip'
+            version: ${{ github.run_id }}
