@@ -39,10 +39,10 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@master
         id: upload_and_scan
         with:
-          appname: "VeraDemo-Pipeline-Scan"
+          appname: 'VeraDemo-Pipeline-Scan-New'
           createprofile: true
-          version: '${{github.run_id }}'
+          criticality: 'VeryHigh'
           filepath: 'verademo.war'
           vid: '${{ secrets.VERACODE_API_ID }}'
           vkey: '${{ secrets.VERACODE_API_KEY }}'
-          scantimeout: 15
+          version: ${{ github.run_id }}
