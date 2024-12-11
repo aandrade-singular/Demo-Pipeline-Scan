@@ -20,7 +20,7 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
       
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v4
       with:
         name: verademo.war
         path: target/verademo.war
@@ -33,7 +33,7 @@ jobs:
       options: --user root
     steps:
       - name: get archive
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: verademo.war
           path: /tmp
@@ -48,7 +48,7 @@ jobs:
             -fjf filtered_results.json
         continue-on-error: true
       - name: save standard results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: PipelineScanResults
           path: results.json
