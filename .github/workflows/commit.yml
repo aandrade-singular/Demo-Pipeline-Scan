@@ -53,7 +53,7 @@ jobs:
           name: PipelineScanResults
           path: results.json
       - name: save filtered results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: filtered-results
           path: filtered_results.json
