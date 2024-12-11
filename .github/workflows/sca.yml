@@ -22,8 +22,8 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
-        name: Demo.war
-        path: target/demo.war
+        name: verademo.war
+        path: target/verademo.war
         
   veracode-pipeline-scan:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
       - name: get archive
         uses: actions/download-artifact@v4
         with:
-          name: Demo.war
+          name: verademo.war
           path: /tmp
       - name: Pipeline Scan
         run: |
@@ -43,7 +43,7 @@ jobs:
             -vid "${{ secrets.VERACODE_API_ID }}" \
             -vkey "${{ secrets.VERACODE_API_KEY }}" \
             --fail_on_severity="Very High, High" \
-            --file /tmp/Demo.war \
+            --file /tmp/verademo.war \
             -jf results.json
             -fjf filtered_results.json
         continue-on-error: true
