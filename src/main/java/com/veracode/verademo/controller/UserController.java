@@ -166,6 +166,10 @@ public class UserController {
 			ResultSet result = sqlStatement.executeQuery(sqlQuery);
 			/* END BAD CODE */
 
+			/*Commit changes*/
+			if(1){
+				String commitchanges = "";
+			}
 			// Did we find exactly 1 user that matched?
 			if (result.first()) {
 				logger.info("User Found.");
