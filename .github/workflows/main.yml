@@ -50,13 +50,11 @@ jobs:
             name: pacoteVeracode
         - name: UploadAndScan
           uses: veracode/veracode-uploadandscan-action@master # Faz a analise da Veracode
-          env:
-            AppName: Github Actions - ${{ github.repository }}
           with:
+            appname: '${{ github.repository }}'
+            version: '${{ github.run_id }}'
             vid: '${{secrets.VERACODE_API_ID }}'
             vkey: '${{secrets.VERACODE_API_KEY }}'
             criticality: 'VeryHigh'
-            appname: '$AppName'
             createsandbox: true
             filepath: 'veracode.zip'
-            version: ${{ github.run_id }}
